@@ -37,9 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social.apps.django_app.default',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.twitter',
     'debug_toolbar',
     'home',
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -66,9 +73,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # Setting of Template Context Processors for Social Auth
-                'social.apps.django_app.context_processors.backends',
-                'social.apps.django_app.context_processors.login_redirect',
+                # `allauth` needs this from django
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -87,6 +93,13 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -106,21 +119,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = (
-# For Facebook Authentication
-'social.backends.facebook.FacebookOAuth2',
 
-# For Twitter Authentication
-'social.backends.twitter.TwitterOAuth',
-
-# For Google Authentication
-'social.backends.google.GoogleOpenId',
-'social.backends.google.GoogleOAuth2',
-'social.backends.google.GoogleOAuth',
-
-# Default Django Auth Backends
-'django.contrib.auth.backends.ModelBackend',
-)
+SITE_ID = 1
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
@@ -144,3 +144,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=(
     os.path.join(BASE_DIR,'ecomweb','static'),
     )
+
