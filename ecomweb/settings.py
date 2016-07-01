@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'home',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -45,7 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.twitter',
     'debug_toolbar',
-    'home',
+    
 
 ]
 
