@@ -1,4 +1,4 @@
-<!--==================================
+==================================
 		Login modal window
 ======================================-->
 {% load socialaccount %}
@@ -24,10 +24,10 @@
 	</header><!--/ .on_the_sides-->
 
 	<form class="type_2" action='"{% url "account_login" %}"' method="POST">
-		{% csrf_token %}
+		<!-- {% csrf_token %} -->
 		<ul>
 
-			<!-- <li>
+			<li>
 				<label for="login_email">Email address</label>
 				<input type="email" name="" id="login_email">
 			</li>
@@ -45,8 +45,8 @@
 			<li class="v_centered">
 				<button class="button_blue middle_btn">Login</button>
 				<a href="#" class="small_link">Forgot your password?</a>
-			</li> -->
-		{{ login_form.as_p }}
+			</li>
+		<!-- {{ login_form.as_p }} -->
 
 		</ul>
 
@@ -74,4 +74,4 @@
 
 <!--==================================
 		End login modal window
-======================================-->
+======================================

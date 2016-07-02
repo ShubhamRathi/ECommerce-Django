@@ -23,7 +23,7 @@
 
 	</header><!--/ .on_the_sides-->
 
-	<!-- <form class="type_2" action="/accounts/login/" method="POST">
+	<form class="type_2" action="/accounts/login/" method="POST">
 		
 		<ul>
 
@@ -50,13 +50,7 @@
 
 		</ul>
 
-	</form> -->
-
-	<form action="{% url 'account_login' %}?next={% url 'home' %}" method="POST">
-    {% csrf_token %}
-    {{login_form}}
-	</form>
-
+	</form>	
 	<hr>
 
 	<div class="streamlined">
