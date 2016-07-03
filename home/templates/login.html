@@ -1,7 +1,7 @@
 ==================================
 		Login modal window
 ======================================-->
-{% load socialaccount %}
+{% load account %}
 
 <div id="login_mw" class="modal_window">
 
@@ -23,7 +23,7 @@
 
 	</header><!--/ .on_the_sides-->
 
-	<form class="type_2" action="/accounts/login/" method="POST">
+	<!-- <form class="type_2" action="/accounts/login/" method="POST">
 		
 		<ul>
 
@@ -50,7 +50,28 @@
 
 		</ul>
 
-	</form>	
+	</form>	 -->
+
+	<h1>Login / Logout</h1>
+
+{% if user.is_authenticated %}
+    <p>Loged in with e-mail: {{ request.user.email }}</p>
+    <a href="{% url "account_logout" %}">Logout</a>
+{% else %}
+    <form action="{% url "account_login" %}" method="post">
+        {% csrf_token %}
+        <input type="email" placeholder="E-mail" name="login">
+        <input type="password" placeholder="Password" name="password">
+        <label for="id_remember_menu" class="text-primary">Remember Me:</label>
+        <input id="id_remember_menu" name="remember" type="checkbox">
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <button type="submit">Login</button>
+        <a href="{% url 'account_reset_password' %}">Forgot Password?</a>
+    </form>
+{% endif %}
+
 	<hr>
 
 	<div class="streamlined">
